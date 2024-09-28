@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Минимальная высота, чтобы адаптироваться под контент */
+    background-color: #000;
+    flex-direction: column; /* Вертикальная ориентация */
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #000;
+    color: #000;
+    font-size: 18px;
+    outline: none;
+}
+
+.input-group label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: #000;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #333;
+    font-size: 12px;
+}
+
+.btn {
+    width: 100%;
+    background-color: #000;
+    border: none;
+    padding: 10px;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #333;
+}
+
+.rec_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.rec_block {
+    background-color: #fff;
+    color: #000;
+    width: calc(33.333% - 40px); /* Адаптивная ширина блока */
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.rec_block:hover {
+    transform: scale(1.007);
+}
+
+.rec_h1 {
+    color: #fff;
+    font-size: 2em;
+    text-align: center;
+    margin-top: 120px;
+    margin-bottom: 50px;
+}
+
+.rec_h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.rec_h4 {
+    color: #fff;
+    font-size: 1.4em;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.rec_ul {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+
+.rec_p {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.rec_buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rec_btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rec_thank {
+    display: none;
+    margin-top: 20px;
+}
+
+.rec_btn svg {
+    margin-right: 8px; /* Отступ между иконкой и текстом */
+    fill: none; /* Убираем заливку */
+    stroke: currentColor; /* Цвет иконки совпадает с цветом текста */
+}
+
+.btn:hover {
+    background-color: #333;
+}
+
+.main_menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%; /* Устанавливаем ширину в 100% */
+    padding-bottom: 50px;
+}
+
+.h2_logo {
+    padding-top: 50px;
+    color: #fff;
+}
+  
+input:checked {
+    border: 6px solid black;
+}
+
+.custom-checkbox {
+    width: 20px;
+}
+
+.submiton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submiton_button {
+    margin: 20px;
+    cursor: pointer;
+    border: none;
+    background-color: #fff9f9;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #0e0e0e;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.submiton_button:hover {
+
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+    .rec_block {
+        width: calc(50% - 40px); /* Блоки занимают больше места */
+    }
+
+    .rec_h1 {
+        margin: 20px;
+        font-size: 1.7em;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .rec_block {
+        width: 100%; /* Блоки занимают 100% ширины экрана */
+        margin: 10px 0;
+    }
+    .rec_h1 {
+        margin-top: 80px;
+        margin-bottom: 20px;
+        font-size: 1.7em;
+    }
+
+    .rec_h4 {
+        font-size: 1.2em;
+    }
+}
