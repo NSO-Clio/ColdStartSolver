@@ -6,15 +6,18 @@ const checkboxes = document.querySelectorAll('input[type="radio"]');
 
 let selectedRadioValues = {}; // Храним данные выборов пользователя
 
-// Функция для отправки GET-запроса на сервер и получения рекомендованных видео
 document.addEventListener('DOMContentLoaded', async function() {
-    const response = await fetch('/get_videos');
-    
-    if (response.ok) {
-        const data = await response.json();
-        renderVideos(data);  // Выводим видео на страницу
-    } else {
-        console.error('Ошибка при получении данных:', response.statusText);
+    try {
+        const response = await fetch(`/get_videos?user_id=${user_id}`);  // Передаем user_id в запросе
+
+        if (response.ok) {
+            const data = await response.json();
+            renderVideos(data);  // Выводим видео на страницу
+        } else {
+            console.error('Ошибка при получении данных:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Произошла ошибка при получении данных:', error);
     }
 });
 
@@ -32,17 +35,17 @@ function renderVideos(videos) {
         videoBlock.innerHTML = `
             <h2 class="rec_h2">${videoData[0]}</h2>
             <ul class="rec_ul">
-                Тематика видио: ${videoData.slice(1).map(point => `<li>${point}</li>`).join('')}
+                Тематика видео: ${videoData.slice(1).map(point => `<li>${point}</li>`).join('')}
             </ul>
             <div class="rec_radio">
                 <p>Как вам видео?</p>
-                <input type="radio" id="like_${id}" name="${id}" value="like"/>
+                <input type="radio" id="like_${id}" name="${id}" value="5"/>
                 <label for="like_${id}">Понравилось</label>
 
-                <input type="radio" id="norm_${id}" name="${id}" value="norm"/>
+                <input type="radio" id="norm_${id}" name="${id}" value="2.5"/>
                 <label for="norm_${id}">Сойдёт</label>
 
-                <input type="radio" id="dislike_${id}" name="${id}" value="dislike"/>
+                <input type="radio" id="dislike_${id}" name="${id}" value="0"/>
                 <label for="dislike_${id}">Не понравилось</label>
             </div>
         `;
@@ -71,28 +74,29 @@ function initializeRadioButtons() {
 document.getElementById('submitBtn').addEventListener('click', function() {
     console.log('Отправляем данные на сервер:', selectedRadioValues);
 
+    // Добавляем user_id в данные для отправки
+    const dataToSend = {
+        ...selectedRadioValues,
+        user_id: user_id  // Включаем user_id
+    };
+
     // Отправка данных на сервер
     fetch('/regenerate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(selectedRadioValues)
+        body: JSON.stringify(dataToSend)  // Используем обновленные данные
     })
     .then(response => response.json())
     .then(data => {
         console.log('Успех:', data);
 
-        // Скрытие блоков на основе полученных данных (например, если "dislike")
+        // Логика для скрытия блоков на основе полученных данных (например, если "dislike")
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
                 const block = document.getElementById(key);
-                
-                if (data[key] === "dislike") {
-                    block.style.display = 'none'; 
-                } else {
-                    block.style.display = 'block';
-                }
+                // Здесь добавьте логику для скрытия блоков
             }
         }
 
