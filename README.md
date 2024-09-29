@@ -27,7 +27,7 @@ RUTUBE, сделано в рамках хакатона Цифровой Про�
 
 # Архитектура
 
-![image](https://github.com/user-attachments/assets/fcf743da-317e-4d99-8d41-3dd7d445fcfb)
+![photo_2024-09-29_11-21-21 (1)](https://github.com/user-attachments/assets/d92beccb-0360-47b4-9920-24f0d9072ab6)
 
 # Команда
 * [Андреасян Егор](https://github.com/EgorAndrik)
