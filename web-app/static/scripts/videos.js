@@ -92,12 +92,9 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     .then(data => {
         console.log('Успех:', data);
 
-        // Логика для скрытия блоков на основе полученных данных (например, если "dislike")
-        for (const key in data) {
-            if (data.hasOwnProperty(key)) {
-                const block = document.getElementById(key);
-                // Здесь добавьте логику для скрытия блоков
-            }
+        // Проверяем наличие URL для перенаправления
+        if (data.redirect_url) {
+            window.location.href = data.redirect_url;  // Перенаправление на нужную страницу
         }
 
         // Сброс радио-кнопок после отправки

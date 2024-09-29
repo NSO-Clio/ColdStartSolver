@@ -46,16 +46,21 @@ def get_videos():
 def regenerate():
     data = request.get_json()
     user_id = data.get('user_id')
+    print(data)
+    print(user_id)
     new_data_rec = pd.DataFrame({
         'datetime': [pd.Timestamp.now()] * 10,
         'user_id': [user_id] * 10,
-        'item_id': [i for i in data.keys()],
-        'weight': [round(float(i)) for i in data.values()]
+        'item_id': [i for i in data.keys() if i != 'user_id'],
+        'weight': [round(float(i)) for i in data.values()][:-1]
     })
+    print(new_data_rec)
+    print('Start update_dataset')
     recModel.update_dataset(
         interactions_new_user=new_data_rec
     )
-    return render_template('videos.html', user_id=user_id)
+    print('update_dataset Done')
+    return jsonify({"redirect_url": url_for('videos', user_id=user_id)}), 200
 
 
 if __name__ == '__main__':
