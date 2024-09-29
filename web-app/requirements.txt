@@ -1,0 +1,7 @@
+Flask==3.0.3
+implicit==0.7.2
+numpy==1.24.2
+pandas==2.2.3
+pyarrow==17.0.0
+rectools==0.8.0
+tqdm==4.66.1
